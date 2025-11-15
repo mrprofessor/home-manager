@@ -4,6 +4,11 @@
   programs.fish = {
     enable = true;
 
+    # Override fish package to disable tests (they fail on macOS)
+    package = pkgs.fish.overrideAttrs (oldAttrs: {
+      doCheck = false;
+    });
+
     loginShellInit = ''
       # Set up Nix
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
