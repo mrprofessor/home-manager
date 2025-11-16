@@ -3,6 +3,7 @@
 {
   imports = [
     ./homebrew.nix
+    ./post-install.nix
   ];
 
   # Set the primary user for homebrew and other user-specific options

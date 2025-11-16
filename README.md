@@ -1,19 +1,21 @@
-# macOS Nix Configuration
+# MacOS Nix Configuration
 
 ## Structure
 
 ```
 ~/.config/home-manager/
-├── flake.nix              # Clean main flake
+├── flake.nix              # Main flake configuration
 ├── flake.lock
 ├── home/
 │   ├── default.nix        # Home-manager base config
 │   ├── fish.nix           # Fish shell config
 │   ├── git.nix            # Git config
-│   └── packages.nix       # Nix packages
+│   ├── packages.nix       # Nix packages
+│   └── aerospace.nix      # Aerospace window manager
 └── darwin/
-    ├── default.nix        # Darwin base config
-    └── homebrew.nix       # Homebrew packages
+    ├── default.nix        # nix-darwin entry point
+    ├── homebrew.nix       # Homebrew packages (brews, casks, taps)
+    └── post-install.nix   # macOS system settings (Dock, Finder, etc.)
 ```
 
 ## Commands

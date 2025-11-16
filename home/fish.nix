@@ -16,6 +16,30 @@
       end
     '';
 
+    interactiveShellInit = ''
+      # Disable welcome message
+      set -g fish_greeting
+
+      # Hydro prompt colors
+      set -g hydro_color_pwd purple
+      set -g hydro_color_git yellow
+      set -g hydro_color_error red
+      set -g hydro_color_prompt cyan
+      set -g hydro_symbol_git_dirty "*"
+    '';
+
+    plugins = [
+      {
+        name = "hydro";
+        src = pkgs.fetchFromGitHub {
+          owner = "jorgebucaran";
+          repo = "hydro";
+          rev = "main";
+          sha256 = "sha256-QYq4sU41/iKvDUczWLYRGqDQpVASF/+6brJJ8IxypjE=";
+        };
+      }
+    ];
+
     shellAliases = {
       # Home Manager aliases
       hm-switch = "nix run home-manager/master -- switch --flake ~/.config/home-manager";
