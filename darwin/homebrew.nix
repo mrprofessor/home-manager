@@ -13,30 +13,34 @@
 
     # Custom taps
     taps = [
+      "d12frosted/emacs-plus"
       "nikitabobko/tap"
     ];
 
     # CLI tools via brew
     brews = [
+      "jq"
       "gh"
       "uv"
-      "mpv"        # Emacs multimedia
-      "ripgrep"    # Faster grep
-      "neovim"
+      "mpv"               # Emacs multimedia
+      "ripgrep"           # Faster grep
+      "bufbuild/buf/buf"  # protobuf generation
+
+      "neovim"            # Neovim
+      "emacs-plus"        # Emacs
+
+      "nvm"               # Node Version Manager
     ];
 
     # GUI apps via casks
     casks = [
-      # Terms and editors
-      "iterm2"
       "zed"
+      "iterm2"
 
-      # Social media
       "discord"
       "microsoft-teams"
       "brave-browser"
 
-      # Tools
       "claude-code"
       "nikitabobko/tap/aerospace"
     ];

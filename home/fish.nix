@@ -20,6 +20,16 @@
       # Disable welcome message
       set -g fish_greeting
 
+      # Initialize Homebrew NVM
+      if test -e /opt/homebrew/opt/nvm/nvm.sh
+        set -gx NVM_DIR ~/.nvm
+        mkdir -p $NVM_DIR
+        # Load nvm using bass (bash to fish translator)
+        function nvm
+          bass source /opt/homebrew/opt/nvm/nvm.sh --no-use ';' nvm $argv
+        end
+      end
+
       # Hydro prompt colors
       set -g hydro_color_pwd purple
       set -g hydro_color_git yellow
@@ -53,7 +63,7 @@
       nix-update = "cd ~/.config/home-manager && nix flake update && nix run home-manager/master -- switch --flake ~/.config/home-manager && sudo -E nix run nix-darwin -- switch --flake ~/.config/home-manager#my-mac";
 
       # Edit flake
-      nix-edit = "nvim ~/.config/home-manager/flake.nix";
+      nix-edit = "zed ~/.config/home-manager/";
     };
   };
 }

@@ -63,6 +63,19 @@
     outer.top = 5
     outer.right = 5
 
+    # Assign all workspaces to the secondary (extended) monitor
+    # Monitor index 2 is the extended monitor (1 is the main built-in display)
+    [workspace-to-monitor-force-assignment]
+    1 = 2
+    2 = 2
+    3 = 2
+    4 = 2
+    5 = 2
+    6 = 2
+    7 = 2
+    8 = 2
+    9 = 2
+
     # 'main' binding mode declaration
     # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
     # 'main' binding mode must be always presented
