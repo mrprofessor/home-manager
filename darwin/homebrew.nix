@@ -13,7 +13,6 @@
 
     # Custom taps
     taps = [
-      "d12frosted/emacs-plus"
       "nikitabobko/tap"
     ];
 
@@ -22,25 +21,26 @@
       "jq"
       "gh"
       "uv"
-      "mpv"               # Emacs multimedia
-      "ripgrep"           # Faster grep
-      "bufbuild/buf/buf"  # protobuf generation
-
-      "neovim"            # Neovim
-      "emacs-plus"        # Emacs
-
-      "nvm"               # Node Version Manager
+      "mpv"                       # Emacs multimedia
+      "ripgrep"                   # Faster grep
+      "bufbuild/buf/buf"          # protobuf generation
+      "neovim"                    # Neovim
+      "opencode"                  # LLMs + CLI
+      "nvm"                       # Node Version Manager
+      "typst"                     # Latex but better
+      "temporal"                  # Work stuff
     ];
 
     # GUI apps via casks
     casks = [
       "zed"
       "iterm2"
-
       "discord"
       "microsoft-teams"
       "brave-browser"
-
+      "orbstack"                  # Docker alternative
+      "bruno"                     # Postman alternative
+      "freelens"                  # K8s IDE
       "claude-code"
       "nikitabobko/tap/aerospace"
     ];

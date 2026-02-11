@@ -12,8 +12,5 @@
     ripgrep
     fzf
     jq
-    
-    # Fish shell utilities
-    fishPlugins.bass  # Needed for NVM integration
   ];
 }

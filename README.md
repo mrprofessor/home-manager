@@ -8,7 +8,7 @@
 ├── flake.lock
 ├── home/
 │   ├── default.nix        # Home-manager base config
-│   ├── fish.nix           # Fish shell config
+│   ├── zsh.nix           # Zsh shell config + aliases
 │   ├── git.nix            # Git config
 │   ├── packages.nix       # Nix packages
 │   └── aerospace.nix      # Aerospace window manager
@@ -33,5 +33,5 @@ darwin-update    # Update flake inputs and apply
 nix-update       # Update everything (flake + home-manager + darwin)
 
 # Edit
-nix-edit         # Open flake.nix in nvim
+nix-edit         # Open ~/.config/home-manager/ in Zed
 ```

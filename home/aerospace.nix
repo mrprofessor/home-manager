@@ -220,6 +220,10 @@
     run = "move-node-to-workspace 6"
 
     [[on-window-detected]]
+    if.app-id = 'com.usebruno.app'
+    run = "move-node-to-workspace 6"
+
+    [[on-window-detected]]
     if.app-id = 'md.obsidian'
     run = "move-node-to-workspace 6"
 
@@ -229,6 +233,10 @@
 
     [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCode'
+    run = "move-node-to-workspace 7"
+
+    [[on-window-detected]]
+    if.app-id = 'dev.kiro.desktop'
     run = "move-node-to-workspace 7"
 
     # Music/Multimedia
