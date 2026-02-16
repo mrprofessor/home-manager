@@ -41,7 +41,8 @@
       "orbstack"                  # Docker alternative
       "bruno"                     # Postman alternative
       "freelens"                  # K8s IDE
-      "claude-code"
+      "claude-code"               # Claude CLI
+      "codex"                     # Open AI CLI
       "nikitabobko/tap/aerospace"
     ];
 

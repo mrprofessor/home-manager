@@ -215,6 +215,11 @@
     if.app-id = 'dev.zed.Zed'
     run = "move-node-to-workspace 5"
 
+    # OpenAI Codex
+    [[on-window-detected]]
+    if.app-id = 'com.openai.codex'
+    run = "move-node-to-workspace 6"
+
     [[on-window-detected]]
     if.app-id = 'io.httpie.desktop'
     run = "move-node-to-workspace 6"
