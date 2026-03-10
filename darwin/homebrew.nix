@@ -23,12 +23,13 @@
       "uv"
       "mpv"                       # Emacs multimedia
       "ripgrep"                   # Faster grep
-      "bufbuild/buf/buf"          # protobuf generation
+      "bufbuild/buf/buf"          # Protobuf generation
       "neovim"                    # Neovim
       "opencode"                  # LLMs + CLI
       "nvm"                       # Node Version Manager
       "typst"                     # Latex but better
       "temporal"                  # Work stuff
+      "siderolabs/tap/talosctl"   # Talos for kubernetes
     ];
 
     # GUI apps via casks

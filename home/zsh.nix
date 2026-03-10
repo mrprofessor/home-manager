@@ -4,8 +4,16 @@
   programs.zsh = {
     enable = true;
 
+    history = {
+      size = 10000;
+      save = 10000;
+      ignoreDups = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+      share = true;
+    };
+
     enableCompletion = true;
-    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     # Cache compinit — only rebuild once a day
@@ -39,6 +47,10 @@
       npm()  { _load_nvm && npm  "$@"; }
       npx()  { _load_nvm && npx  "$@"; }
 
+      # Up/down arrow history search (replaces oh-my-zsh default)
+      bindkey '^[[A' history-search-backward
+      bindkey '^[[B' history-search-forward
+
       # Colored man pages (replaces oh-my-zsh colored-man-pages plugin)
       export LESS_TERMCAP_mb=$'\e[1;31m'
       export LESS_TERMCAP_md=$'\e[1;36m'
@@ -55,18 +67,21 @@
       glog = "git log --oneline --decorate --graph";
 
       # Home Manager aliases
-      hm-switch = "nix run home-manager/master -- switch --flake ~/.config/home-manager";
-      hm-update = "cd ~/.config/home-manager && nix flake update && nix run home-manager/master -- switch --flake ~/.config/home-manager";
+      hms = "nix run home-manager/master -- switch --flake ~/.config/home-manager";
+      hmu = "cd ~/.config/home-manager && nix flake update && nix run home-manager/master -- switch --flake ~/.config/home-manager";
 
       # Darwin/System aliases
-      darwin-switch = "sudo -E nix run nix-darwin -- switch --flake ~/.config/home-manager#my-mac";
-      darwin-update = "cd ~/.config/home-manager && nix flake update && sudo -E nix run nix-darwin -- switch --flake ~/.config/home-manager#my-mac";
+      dws = "sudo -E nix run nix-darwin -- switch --flake ~/.config/home-manager#my-mac";
+      dwu = "cd ~/.config/home-manager && nix flake update && sudo -E nix run nix-darwin -- switch --flake ~/.config/home-manager#my-mac";
 
       # Combined update
-      nix-update = "cd ~/.config/home-manager && nix flake update && nix run home-manager/master -- switch --flake ~/.config/home-manager && sudo -E nix run nix-darwin -- switch --flake ~/.config/home-manager#my-mac";
+      nxu = "cd ~/.config/home-manager && nix flake update && nix run home-manager/master -- switch --flake ~/.config/home-manager && sudo -E nix run nix-darwin -- switch --flake ~/.config/home-manager#my-mac";
 
       # Edit flake
-      nix-edit = "zed ~/.config/home-manager/";
+      nxe = "nvim ~/.config/home-manager/";
+
+      # Ghostty
+      ghostty = "/Applications/Ghostty.app/Contents/MacOS/ghostty";
     };
   };
 

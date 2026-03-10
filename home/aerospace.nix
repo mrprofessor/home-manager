@@ -96,14 +96,8 @@
 
     # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-    # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-    # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-    # alt-enter = '''exec-and-forget osascript -e '
-    # tell application "teminal"
-    # do script
-    # activate
-    # end tell'
-    # '''
+    # Open Ghostty with alt-enter (with auto-retile fix for tabs)
+    alt-enter = ['exec-and-forget osascript -e "tell application \"Ghostty\" to activate" -e "delay 0.1" -e "tell application \"System Events\" to tell process \"Ghostty\" to click menu item \"New Window\" of menu \"File\" of menu bar 1"', 'exec-and-forget sh -c "sleep 0.3 && aerospace layout tiling"']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-slash = 'layout tiles horizontal vertical'
@@ -188,8 +182,7 @@
 
     [[on-window-detected]]
     if.app-id = 'com.mitchellh.ghostty'
-    run = ["move-node-to-workspace 5"]
-    #run = ["layout floating", "move-node-to-workspace 5"]
+    run = ["layout floating", "move-node-to-workspace 2"]
 
     [[on-window-detected]]
     if.app-id = 'org.gnu.Emacs'
