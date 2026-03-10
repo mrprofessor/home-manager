@@ -91,30 +91,7 @@
     enableZshIntegration = true;
   };
 
-  xdg.configFile."starship.toml".text = ''
-    format = "$username$directory$git_branch$git_status$character"
-
-    [username]
-    show_always = true
-    format = "[$user](green) "
-
-    [directory]
-    format = "[$path](bold cyan) "
-    truncation_length = 0
-    truncate_to_repo = false
-    fish_style_pwd_dir_length = 0
-
-    [git_branch]
-    format = "[($branch)](yellow)"
-
-    [git_status]
-    modified = "*"
-    format = "[$all_status$ahead_behind](red) "
-
-    [character]
-    success_symbol = "[\\$](green)"
-    error_symbol = "[\\$](red)"
-  '';
+  xdg.configFile."starship.toml".source = ./starship/starship.toml;
 
   # Smart cd (replaces oh-my-zsh z plugin)
   programs.zoxide = {

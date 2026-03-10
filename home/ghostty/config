@@ -6,13 +6,13 @@ window-decoration = true
 macos-titlebar-style = tabs
 window-save-state = always
 theme = Belafonte Day
-theme = dark:Aardvark Blue,light:Belafonte Day
+theme = dark:Aardvark Blue,light:Alabaster
 
 
 # Natural text editing (macOS style)
 keybind = cmd+backspace=esc:w
 
 # Fix Ctrl+Enter sending ~13 instead of newline
-keybind = ctrl+enter=text:\x0a
+keybind = shift+enter=text:\x0a
 
 confirm-close-surface = false
