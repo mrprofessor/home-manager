@@ -27,10 +27,20 @@
     '';
 
     initContent = ''
-      # Set up Nix
-      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-      fi
+      # Nix (static, replaces slow `nix-daemon.sh`)
+      export __ETC_PROFILE_NIX_SOURCED=1
+      export NIX_PROFILES="/nix/var/nix/profiles/default $HOME/.nix-profile"
+      export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+      export XDG_DATA_DIRS="''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}:$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share"
+      export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+
+      # Homebrew (static, replaces slow `brew shellenv`)
+      export HOMEBREW_PREFIX="/opt/homebrew"
+      export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+      export HOMEBREW_REPOSITORY="/opt/homebrew/Library/.homebrew-is-managed-by-nix"
+      export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+      export MANPATH="/opt/homebrew/share/man:''${MANPATH:-}"
+      export INFOPATH="/opt/homebrew/share/info:''${INFOPATH:-}"
 
       # Add .local/bin to PATH for kiro-cli
       export PATH="$HOME/.local/bin:$PATH"
@@ -82,6 +92,9 @@
 
       # Ghostty
       ghostty = "/Applications/Ghostty.app/Contents/MacOS/ghostty";
+
+      # Kiro CLI with trusted common tools
+      kiro = "kiro-cli chat --trust-tools read,write,shell,web_search,web_fetch";
     };
   };
 

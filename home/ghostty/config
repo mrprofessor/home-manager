@@ -5,14 +5,16 @@ font-size = 18
 window-decoration = true
 macos-titlebar-style = tabs
 window-save-state = always
-theme = Belafonte Day
-theme = dark:Aardvark Blue,light:Alabaster
+theme = dark:Box, light:Monokai Pro Light Sun
 
 
 # Natural text editing (macOS style)
 keybind = cmd+backspace=esc:w
 
-# Fix Ctrl+Enter sending ~13 instead of newline
+# Fix Shift+Enter sending ~13 instead of newline
 keybind = shift+enter=text:\x0a
 
 confirm-close-surface = false
+
+background-opacity = 0.85
+background-blur-radius = 20

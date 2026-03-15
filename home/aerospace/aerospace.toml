@@ -178,7 +178,7 @@ run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = ["layout floating", "move-node-to-workspace 2"]
+run = ["move-node-to-workspace 2", "layout floating"]
 
 [[on-window-detected]]
 if.app-id = 'org.gnu.Emacs'
