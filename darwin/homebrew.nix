@@ -18,6 +18,7 @@
 
     # CLI tools via brew
     brews = [
+      "go"
       "jq"
       "gh"
       "uv"
@@ -25,10 +26,10 @@
       "ripgrep"                   # Faster grep
       "bufbuild/buf/buf"          # Protobuf generation
       "neovim"                    # Neovim
-      "opencode"                  # LLMs + CLI
       "nvm"                       # Node Version Manager
       "typst"                     # Latex but better
-      "temporal"                  # Work stuff
+      "temporal"                  # Durable execution stuff (Also work stuff)
+      "pngpaste"                  # Paste images from clipboard
       "siderolabs/tap/talosctl"   # Talos for kubernetes
     ];
 
@@ -43,7 +44,6 @@
       "bruno"                     # Postman alternative
       "freelens"                  # K8s IDE
       "claude-code"               # Claude CLI
-      "codex"                     # Open AI CLI
       "nikitabobko/tap/aerospace"
     ];
 

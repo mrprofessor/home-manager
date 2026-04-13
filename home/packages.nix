@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     # Programming languages
-    go
     python312
     python312Packages.virtualenv
 

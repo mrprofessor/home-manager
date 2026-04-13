@@ -2,8 +2,7 @@
   description = "MacOS Nix Config";
 
   inputs = {
-    # Pin to a recent nixpkgs before buildEnv bug
-    nixpkgs.url = "github:NixOS/nixpkgs/91c9a64ce2a84e648d0cf9671274bb9c2fb9ba60";
+    nixpkgs.url = "github:NixOS/nixpkgs/cff6bcc05680cea7406aa1f293d76be9c1483f02";
 
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
