@@ -56,6 +56,8 @@
       node() { _load_nvm && node "$@"; }
       npm()  { _load_nvm && npm  "$@"; }
       npx()  { _load_nvm && npx  "$@"; }
+      vim()  { _load_nvm && command vim "$@"; }
+      nvim() { _load_nvm && command nvim "$@"; }
 
       # Up/down arrow history search (replaces oh-my-zsh default)
       bindkey '^[[A' history-search-backward

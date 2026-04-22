@@ -7,6 +7,7 @@
     ./packages.nix
     ./aerospace.nix
     ./neovim.nix
+    ./tmux.nix
   ];
 
   # Basic home-manager settings

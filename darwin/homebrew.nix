@@ -22,9 +22,9 @@
       "jq"
       "gh"
       "uv"
+      "tmux"
       "mpv"                       # Emacs multimedia
       "ripgrep"                   # Faster grep
-      "bufbuild/buf/buf"          # Protobuf generation
       "neovim"                    # Neovim
       "nvm"                       # Node Version Manager
       "typst"                     # Latex but better
