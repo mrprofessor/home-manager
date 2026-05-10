@@ -44,6 +44,7 @@
       "bruno"                     # Postman alternative
       "freelens"                  # K8s IDE
       "claude-code"               # Claude CLI
+      "codex"                     # OpenAI Codex CLI
       "nikitabobko/tap/aerospace"
     ];
 

@@ -27,6 +27,9 @@
     '';
 
     initContent = ''
+      # Kiro CLI pre block. Keep at the top of this file.
+      [[ -f "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
       # Nix (static, replaces slow `nix-daemon.sh`)
       export __ETC_PROFILE_NIX_SOURCED=1
       export NIX_PROFILES="/nix/var/nix/profiles/default $HOME/.nix-profile"
@@ -56,8 +59,6 @@
       node() { _load_nvm && node "$@"; }
       npm()  { _load_nvm && npm  "$@"; }
       npx()  { _load_nvm && npx  "$@"; }
-      vim()  { _load_nvm && command vim "$@"; }
-      nvim() { _load_nvm && command nvim "$@"; }
 
       # Up/down arrow history search (replaces oh-my-zsh default)
       bindkey '^[[A' history-search-backward
@@ -72,6 +73,8 @@
       export LESS_TERMCAP_ue=$'\e[0m'
       export LESS_TERMCAP_us=$'\e[1;32m'
 
+      # Kiro CLI post block. Keep at the bottom of this file.
+      [[ -f "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
     '';
 
     shellAliases = {

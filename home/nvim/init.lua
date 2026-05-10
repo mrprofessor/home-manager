@@ -118,16 +118,6 @@ require("lazy").setup({
       })
     end },
 
-  -- AI: GitHub Copilot
-  { "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = true, auto_trigger = true,
-        keymap = { accept = "<M-l>", next = "<M-]>", prev = "<M-[>", dismiss = "<M-h>" } },
-      panel = { enabled = true },
-    } },
-
   -- Quality of life
   { "lewis6991/gitsigns.nvim", opts = {} },
   { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
