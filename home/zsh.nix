@@ -27,9 +27,6 @@
     '';
 
     initContent = ''
-      # Kiro CLI pre block. Keep at the top of this file.
-      [[ -f "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
-
       # Nix (static, replaces slow `nix-daemon.sh`)
       export __ETC_PROFILE_NIX_SOURCED=1
       export NIX_PROFILES="/nix/var/nix/profiles/default $HOME/.nix-profile"
@@ -45,7 +42,7 @@
       export MANPATH="/opt/homebrew/share/man:''${MANPATH:-}"
       export INFOPATH="/opt/homebrew/share/info:''${INFOPATH:-}"
 
-      # Add .local/bin to PATH for kiro-cli
+      # Add .local/bin to PATH
       export PATH="$HOME/.local/bin:$PATH"
 
       # Lazy-load NVM — only sources nvm.sh on first use
@@ -73,8 +70,6 @@
       export LESS_TERMCAP_ue=$'\e[0m'
       export LESS_TERMCAP_us=$'\e[1;32m'
 
-      # Kiro CLI post block. Keep at the bottom of this file.
-      [[ -f "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "''${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
     '';
 
     shellAliases = {
@@ -98,8 +93,6 @@
       # Ghostty
       ghostty = "/Applications/Ghostty.app/Contents/MacOS/ghostty";
 
-      # Kiro CLI with trusted common tools
-      kiro = "kiro-cli chat --trust-tools read,write,shell,web_search,web_fetch";
     };
   };
 

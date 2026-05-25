@@ -189,7 +189,7 @@ if.app-id = 'com.apple.dt.Xcode'
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
-if.app-id = 'org.rkar.rudderless'
+if.app-id = 'dev.rudderless.raft'
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
@@ -231,10 +231,6 @@ run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
-run = "move-node-to-workspace 7"
-
-[[on-window-detected]]
-if.app-id = 'dev.kiro.desktop'
 run = "move-node-to-workspace 7"
 
 # Music/Multimedia
