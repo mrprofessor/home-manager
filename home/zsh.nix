@@ -30,9 +30,14 @@
       # Nix (static, replaces slow `nix-daemon.sh`)
       export __ETC_PROFILE_NIX_SOURCED=1
       export NIX_PROFILES="/nix/var/nix/profiles/default $HOME/.nix-profile"
-      export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+      export NIX_SSL_CERT_FILE=/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt
       export XDG_DATA_DIRS="''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}:$HOME/.nix-profile/share:/nix/var/nix/profiles/default/share"
       export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+
+      # BidOne / Cloudflare WARP CA — append the Cloudflare gateway root
+      # to a writable copy of certifi's bundle and point az (Python
+      # requests) at it. See ~/Work/setup-attempt-2.md step 6.
+      export REQUESTS_CA_BUNDLE="$HOME/.config/azure/cacert.pem"
 
       # Homebrew (static, replaces slow `brew shellenv`)
       export HOMEBREW_PREFIX="/opt/homebrew"
@@ -93,6 +98,11 @@
       # Ghostty
       ghostty = "/Applications/Ghostty.app/Contents/MacOS/ghostty";
 
+      # Claude Code — auto-accept file edits, still prompt for Bash/risky tools
+      claude = "claude --permission-mode acceptEdits";
+
+      # Claude Code — skip ALL permission prompts (YOLO mode)
+      yolo = "claude --dangerously-skip-permissions";
     };
   };
 

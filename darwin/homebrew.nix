@@ -14,6 +14,7 @@
     # Custom taps
     taps = [
       "nikitabobko/tap"
+      "atlassian/acli"
     ];
 
     # CLI tools via brew
@@ -25,12 +26,11 @@
       "tmux"
       "mpv"                       # Emacs multimedia
       "ripgrep"                   # Faster grep
-      "neovim"                    # Neovim
       "nvm"                       # Node Version Manager
       "typst"                     # Latex but better
-      "temporal"                  # Durable execution stuff (Also work stuff)
       "pngpaste"                  # Paste images from clipboard
-      "siderolabs/tap/talosctl"   # Talos for kubernetes
+      "podman"                    # Container runtime
+      "atlassian/acli/acli"       # Atlassian client
     ];
 
     # GUI apps via casks
@@ -40,12 +40,13 @@
       "discord"
       "microsoft-teams"
       "brave-browser"
+      "raycast"
       "orbstack"                  # Docker alternative
       "bruno"                     # Postman alternative
       "freelens"                  # K8s IDE
       "claude-code"               # Claude CLI
       "codex"                     # OpenAI Codex CLI
-      "nikitabobko/tap/aerospace"
+      "nikitabobko/tap/aerospace" # MacOS windows manager
     ];
 
     # Automatically update homebrew and upgrade packages

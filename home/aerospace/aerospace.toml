@@ -32,7 +32,7 @@ default-root-container-layout = 'tiles'
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
 # tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'horizontal'
+default-root-container-orientation = 'auto'
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -59,18 +59,30 @@ outer.bottom = 2
 outer.top = 5
 outer.right = 5
 
-# Assign all workspaces to the secondary (extended) monitor
-# Monitor index 2 is the extended monitor (1 is the main built-in display)
+# Workspace -> monitor assignment.
+#
+# Office layout (3 monitors):
+#   - Built-in MacBook screen   -> Safari / Brave / Slack / Teams   (WS 1, 8)
+#   - Portrait monitor          -> Ghostty (terminals)              (WS 2)
+#   - Landscape external        -> everything else                  (WS 3-7, 9)
+#
+# Home layout (1 external monitor, MacBook lid closed):
+#   - Everything goes on that external. The home external is "LS27D70xE",
+#     so the 'LS27' substring pattern catches it before any office-only pattern.
+#
+# Patterns: case-insensitive regex substring; arrays are first-match-wins.
+# At the office, fill in 'OFFICE_PORTRAIT' / 'OFFICE_LANDSCAPE' with substrings
+# of those monitor names (run `aerospace list-monitors`).
 [workspace-to-monitor-force-assignment]
-1 = 2
-2 = 2
-3 = 2
-4 = 2
-5 = 2
-6 = 2
-7 = 2
-8 = 2
-9 = 2
+1 = ['LS27', 'built-in']                     # Safari / Finder / Brave -> external (home) / MacBook (office)
+2 = ['LS27', 'OFFICE_PORTRAIT']              # Ghostty / iTerm / Wez   -> external (home) / portrait (office)
+3 = ['LS27', 'OFFICE_LANDSCAPE']             # Emacs / Xcode
+4 = ['LS27', 'OFFICE_LANDSCAPE']             # Preview / iBooks / DjVu
+5 = ['LS27', 'OFFICE_LANDSCAPE']             # Zed
+6 = ['LS27', 'OFFICE_LANDSCAPE']             # Codex / Obsidian / HTTPie / Bruno / Freelens
+7 = ['LS27', 'OFFICE_LANDSCAPE']             # VSCode / Music
+8 = ['LS27', 'built-in']                     # Slack / Teams           -> external (home) / MacBook (office)
+9 = ['LS27', 'OFFICE_LANDSCAPE']             # Discord
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -169,6 +181,10 @@ if.app-id = 'com.apple.finder'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id = 'com.googlecode.iterm2'
 run = "move-node-to-workspace 2"
 
@@ -244,6 +260,10 @@ run = "move-node-to-workspace 7"
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
+run = "move-node-to-workspace 8"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace 8"
 
 [[on-window-detected]]

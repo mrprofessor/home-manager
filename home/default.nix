@@ -8,6 +8,7 @@
     ./aerospace.nix
     ./neovim.nix
     ./tmux.nix
+    ./direnv.nix
   ];
 
   # Basic home-manager settings

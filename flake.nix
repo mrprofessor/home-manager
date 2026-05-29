@@ -11,6 +11,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    direnv-instant.url = "github:Mic92/direnv-instant";
+    direnv-instant.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nix-darwin, home-manager, nix-homebrew, ... }@inputs:
@@ -22,10 +25,12 @@
       # ------------------------
       homeConfigurations = {
         prof = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { 
+          pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
           };
+
+          extraSpecialArgs = { inherit inputs; };
 
           modules = [
             ./home
