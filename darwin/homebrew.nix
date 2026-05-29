@@ -37,6 +37,7 @@
     casks = [
       "zed"
       "iterm2"
+      "ghostty"                   # GPU-accelerated terminal
       "discord"
       "microsoft-teams"
       "brave-browser"
@@ -53,6 +54,7 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
+      cleanup = "uninstall";
     };
   };
 }
