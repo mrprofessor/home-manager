@@ -11,5 +11,9 @@
     ripgrep
     fzf
     jq
+
+    # Kubernetes (local cluster for the ~/labs/platform lab)
+    kind
+    kubectl
   ];
 }
