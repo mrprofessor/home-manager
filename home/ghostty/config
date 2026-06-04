@@ -5,7 +5,8 @@ font-size = 15
 window-decoration = true
 macos-titlebar-style = tabs
 window-save-state = always
-theme = dark:Box, light:Monokai Pro Light Sun
+theme = dark:Box, light:Apple System Colors Light
+#theme = dark:Box, light:Monokai Pro Light Sun
 
 
 # Natural text editing (macOS style)
