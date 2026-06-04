@@ -19,34 +19,58 @@
 
     # CLI tools via brew
     brews = [
+      # Languages / runtimes
       "go"
-      "jq"
-      "gh"
-      "uv"
-      "tmux"
-      "mpv"                       # Emacs multimedia
-      "ripgrep"                   # Faster grep
+      "uv"                        # Python package manager
       "nvm"                       # Node Version Manager
-      "typst"                     # Latex but better
-      "pngpaste"                  # Paste images from clipboard
-      "podman"                    # Container runtime
+
+      # Shell / CLI utilities
+      "jq"
+      "ripgrep"                   # Faster grep
+      "tmux"
+
+      # Dev / DevOps
+      "gh"
+      "podman"                    # Docker work stuff
       "atlassian/acli/acli"       # Atlassian client
+
+      # Media / Misc
+      "mpv"                       # Emacs multimedia
+      "pngpaste"                  # Paste images from clipboard
+      "typst"                     # Latex but better
     ];
 
     # GUI apps via casks
     casks = [
-      "zed"
-      "iterm2"
+      # Editors / IDEs
+      "zed"                       # Goated text editor fr
+      "visual-studio-code"        # Until Zed support notebooks/pdfs
+
+      # Terminal
       "ghostty"                   # GPU-accelerated terminal
+
+      # AI / Coding tools
+      "claude-code@latest"        # Claude CLI (fast-updating channel)
+      "codex"                     # OpenAI Codex CLI
+
+      # Browsers
+      "brave-browser"
+
+      # Containers / DevOps
+      "orbstack"                  # Docker alternative
+      "podman-desktop"            # Work license issue
+      "freelens"                  # K8s IDE
+
+      # API / Dev tools
+      "bruno"                     # Postman alternative
+
+      # Productivity / Communication
+      "raycast"
+      "obsidian"
       "discord"
       "microsoft-teams"
-      "brave-browser"
-      "raycast"
-      "orbstack"                  # Docker alternative
-      "bruno"                     # Postman alternative
-      "freelens"                  # K8s IDE
-      "claude-code"               # Claude CLI
-      "codex"                     # OpenAI Codex CLI
+
+      # Window management
       "nikitabobko/tap/aerospace" # MacOS windows manager
     ];
 
