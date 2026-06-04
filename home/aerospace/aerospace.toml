@@ -61,28 +61,31 @@ outer.right = 5
 
 # Workspace -> monitor assignment.
 #
-# Office layout (3 monitors):
-#   - Built-in MacBook screen   -> Safari / Brave / Slack / Teams   (WS 1, 8)
-#   - Portrait monitor          -> Ghostty (terminals)              (WS 2)
-#   - Landscape external        -> everything else                  (WS 3-7, 9)
+# Office layout (2 monitors, MacBook in clamshell / lid closed):
+#   Both office monitors report the SAME name ("LS27D70xE"), so a name regex
+#   can't tell them apart. Instead we use AeroSpace's 'main'/'secondary'
+#   keywords ('secondary' only works when exactly 2 monitors are connected):
+#   - Left  monitor, VERTICAL   = 'secondary' -> Ghostty + Slack/Teams  (WS 2, 8)
+#   - Right monitor, HORIZONTAL = 'main'      -> everything else        (WS 1, 3-7, 9)
+#   (Right monitor is set as "Main display" in System Settings > Displays.)
 #
 # Home layout (1 external monitor, MacBook lid closed):
-#   - Everything goes on that external. The home external is "LS27D70xE",
-#     so the 'LS27' substring pattern catches it before any office-only pattern.
+#   Only one monitor, so 'secondary' never matches and 'main' is that single
+#   external -> everything lands on it. The 'LS27' substring is kept as a
+#   belt-and-braces fallback that also catches the lone external.
 #
 # Patterns: case-insensitive regex substring; arrays are first-match-wins.
-# At the office, fill in 'OFFICE_PORTRAIT' / 'OFFICE_LANDSCAPE' with substrings
-# of those monitor names (run `aerospace list-monitors`).
+# A pattern that matches no connected monitor is skipped, so the next is tried.
 [workspace-to-monitor-force-assignment]
-1 = ['LS27', 'built-in']                     # Safari / Finder / Brave -> external (home) / MacBook (office)
-2 = ['LS27', 'OFFICE_PORTRAIT']              # Ghostty / iTerm / Wez   -> external (home) / portrait (office)
-3 = ['LS27', 'OFFICE_LANDSCAPE']             # Emacs / Xcode
-4 = ['LS27', 'OFFICE_LANDSCAPE']             # Preview / iBooks / DjVu
-5 = ['LS27', 'OFFICE_LANDSCAPE']             # Zed
-6 = ['LS27', 'OFFICE_LANDSCAPE']             # Codex / Obsidian / HTTPie / Bruno / Freelens
-7 = ['LS27', 'OFFICE_LANDSCAPE']             # VSCode / Music
-8 = ['LS27', 'built-in']                     # Slack / Teams           -> external (home) / MacBook (office)
-9 = ['LS27', 'OFFICE_LANDSCAPE']             # Discord
+1 = ['main', 'LS27', 'built-in']             # Safari / Finder / Brave -> right horizontal
+2 = ['secondary', 'LS27', 'built-in']        # Ghostty / iTerm / Wez   -> left vertical
+3 = ['main', 'LS27', 'built-in']             # Emacs / Xcode           -> right horizontal
+4 = ['main', 'LS27', 'built-in']             # Preview / iBooks / DjVu -> right horizontal
+5 = ['main', 'LS27', 'built-in']             # Zed                     -> right horizontal
+6 = ['main', 'LS27', 'built-in']             # Codex / Obsidian / Bruno / Freelens -> right horizontal
+7 = ['main', 'LS27', 'built-in']             # VSCode / Music          -> right horizontal
+8 = ['secondary', 'LS27', 'built-in']        # Slack / Teams           -> left vertical
+9 = ['main', 'LS27', 'built-in']             # Discord                 -> right horizontal
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -230,7 +233,7 @@ if.app-id = 'com.openai.codex'
 run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
-if.app-id = 'io.httpie.desktop'
+if.app-id = 'com.anthropic.claudefordesktop '
 run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
