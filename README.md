@@ -12,7 +12,9 @@
 │   ├── git.nix            # Git config
 │   ├── packages.nix       # Nix packages
 │   ├── neovim.nix         # Neovim config
-│   └── aerospace.nix      # Aerospace window manager
+│   ├── aerospace.nix      # Aerospace window manager (symlinks the toml below)
+│   └── aerospace/
+│       └── aerospace.toml # Aerospace workspace + monitor rules
 └── darwin/
     ├── default.nix        # nix-darwin entry point
     ├── homebrew.nix       # Homebrew packages (brews, casks, taps)
