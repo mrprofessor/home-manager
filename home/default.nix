@@ -5,6 +5,7 @@
     ./zsh.nix
     ./git.nix
     ./packages.nix
+    ./claude-code.nix
     ./aerospace.nix
     ./neovim.nix
     ./tmux.nix
