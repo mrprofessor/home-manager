@@ -37,6 +37,41 @@ nxu              # Update everything (flake + home-manager + darwin)
 nxe              # Open config in nvim
 ```
 
+## AeroSpace Window Manager
+
+Config lives in `home/aerospace/aerospace.toml` (symlinked to `~/.aerospace.toml`
+by `home/aerospace.nix`). Apps are pinned to workspaces, and workspaces are pinned
+to monitors.
+
+### Workspaces
+
+| WS | Apps |
+|----|------|
+| 1  | Safari, Finder, Brave |
+| 2  | Ghostty, iTerm, WezTerm |
+| 3  | Emacs, Xcode |
+| 4  | Preview, iBooks, DjVu, Raft |
+| 5  | Zed |
+| 6  | Codex, Claude, Bruno, Obsidian, Freelens |
+| 7  | VSCode, Music, Elmedia |
+| 8  | Slack, Teams |
+| 9  | Discord |
+
+### Monitor assignment
+
+Both work monitors report the **same** name (`LS27D70xE`), so a name regex can't
+tell them apart. Assignment uses AeroSpace's `main`/`secondary` keywords instead
+(`secondary` only resolves when exactly 2 monitors are connected):
+
+- **Work** (2 monitors, MacBook in clamshell):
+  - Left **vertical** monitor = `secondary` → **Ghostty (WS 2)** + **Slack/Teams (WS 8)**
+  - Right **horizontal** monitor = `main` → everything else
+  - The right monitor must be set as **Main display** in *System Settings → Displays*.
+    If left/right come out swapped, flip which display is Main — no config change needed.
+- **Home** (1 external, clamshell): only one monitor, so `secondary` never matches
+  and every workspace falls through to `main` / the `LS27` fallback → all apps land
+  on the single external. The same config works in both places with no edits.
+
 ## Shell Startup Optimizations
 
 `zsh.nix` inlines several slow shell init scripts as static exports for faster startup:
