@@ -8,6 +8,7 @@ directly.
 
 - macOS (aarch64), Nix + nix-darwin + home-manager (flake at `~/.config/home-manager`).
 - Apply changes with `hms` (home-manager) or `dws` (darwin). Aliases live in `home/zsh.nix`.
+- Obsidian vault `hivemind` at `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/hivemind`.
 
 ## Language
 
