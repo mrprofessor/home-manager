@@ -28,5 +28,8 @@
 
     # Global user memory -> ~/.claude/CLAUDE.md (read-only Nix symlink).
     memory.source = ./claude/CLAUDE.md;
+
+    # Personal skills -> ~/.claude/skills/<name>/.
+    skills.nix-home-manager = ./claude/skills/nix-home-manager;
   };
 }
