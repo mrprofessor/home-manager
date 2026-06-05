@@ -1,43 +1,60 @@
 ---
 name: nix-home-manager
-description: Manage this user's Nix flake config (home-manager + nix-darwin) at ~/.config/home-manager. Use when adding/removing packages, editing dotfiles managed by Nix, creating new home-manager modules, configuring Homebrew, or applying changes with hms/dws/nxu. Trigger on any edit under ~/.config/home-manager or requests like "add a package", "manage X with home-manager", "rebuild my nix config".
+description: Use when editing this user's Nix flake at ~/.config/home-manager (home-manager + nix-darwin on aarch64-darwin). Covers adding packages, new modules, managed dotfiles, Homebrew, applying with hms/dws/nxu, and the git-tracked-files gotcha. Triggers on edits under ~/.config/home-manager, "add a package", "manage X with home-manager", "new home-manager module", "rebuild/switch my nix config", any mention of hms/dws/nxu, or a "path is not tracked by git" eval error.
 allowed-tools: Bash(nix:*) Bash(git:*) Bash(ls:*) Read Edit Write
 ---
 
-# Nix home-manager (this machine)
+# nix-home-manager
 
-Flake at `~/.config/home-manager` on aarch64-darwin. Channels: nixpkgs pinned,
-home-manager `release-25.11`, nix-darwin `25.11`.
+Flake at `~/.config/home-manager`, aarch64-darwin. Outputs
+`homeConfigurations.prof` (user env) and `darwinConfigurations.my-mac` (system +
+Homebrew). Channels: nixpkgs pinned, home-manager and nix-darwin on `25.11`.
+
+## Golden rule: stage before you build
+
+**Flakes only see git-tracked files. `git add` every new file BEFORE building or
+switching, or eval dies with "path X is not tracked by git".** You need not
+commit, just stage. The "Git tree is dirty" warning is harmless and expected.
+
+**Why:** flake evaluation reads from the git tree, not the working dir, so an
+untracked `home/foo.nix` is invisible and the import fails confusingly.
 
 ## Layout
 
-- `flake.nix` outputs `homeConfigurations.prof` and `darwinConfigurations.my-mac`.
-- `home/default.nix` imports the modular `home/*.nix` files (zsh, git, packages, etc.).
-- `darwin/` holds system + Homebrew config (`default.nix`, `homebrew.nix`, `post-install.nix`).
-- Raw (non-Nix) config files live in `home/<tool>/` (e.g. `home/ghostty/config`,
-  `home/nvim/init.lua`) and are referenced by relative path from the module.
+- `home/default.nix` imports the modular `home/*.nix` files.
+- Per-tool raw config lives in `home/<tool>/` (e.g. `home/ghostty/config`,
+  `home/nvim/init.lua`), referenced by relative path from its module.
+- `darwin/` holds system config: `default.nix`, `homebrew.nix`, `post-install.nix`.
 
-## Apply commands (aliases in `home/zsh.nix`)
+## How to make a change
 
-- `hms` apply home-manager. `hmu` update flake then apply.
-- `dws` apply nix-darwin (sudo). `dwu` update then apply.
-- `nxu` update flake then apply both. `nxe` open the repo in nvim.
+- **CLI package:** append to `home.packages` in `home/packages.nix`.
+- **Homebrew app/cask:** edit `darwin/homebrew.nix`, then `dws`.
+- **New module:** create `home/<name>.nix`, add `./<name>.nix` to `imports` in
+  `home/default.nix`.
+- **Managed dotfile:** drop the file in `home/<tool>/`, reference via the
+  program's `*.source` option, `home.file."...".source`, or `xdg.configFile`.
 
-## How to make common changes
+## Apply (aliases in `home/zsh.nix`)
 
-- Add a CLI package: append to `home.packages` in `home/packages.nix`.
-- Add a Homebrew app/cask: edit `darwin/homebrew.nix`, then `dws`.
-- New config module: create `home/<name>.nix`, add `./<name>.nix` to the
-  `imports` list in `home/default.nix`.
-- New managed dotfile: drop it in `home/<tool>/`, reference via the program's
-  `*.source` option, `home.file`, or `xdg.configFile`.
+| alias | does |
+|---|---|
+| `hms` | switch home-manager |
+| `dws` | switch nix-darwin (sudo) |
+| `nxu` | flake update then switch both |
+| `hmu` / `dwu` | update then switch that one |
+| `nxe` | open the repo in nvim |
 
-## Rules
+## Verify before switching
 
-- Flakes only see git-tracked files. `git add` any new file BEFORE building, or
-  you get "path X not tracked by git". The "Git tree is dirty" warning is harmless.
-- Verify before switching: `nix build .#homeConfigurations.prof.activationPackage --no-link`.
-- Home-manager-managed files become read-only Nix store symlinks. Edit the repo
-  source and `hms`, never the live file in `$HOME`.
-- Do not bump `home.stateVersion` casually.
+- Home: `nix build .#homeConfigurations.prof.activationPackage --no-link`
+- System: `nix build .#darwinConfigurations.my-mac.system --no-link`
+
+A clean build is the green light to switch.
+
+## Gotchas
+
+- Managed files become read-only Nix store symlinks. Edit the repo source and
+  re-switch, never the live file in `$HOME`.
+- Do not bump `home.stateVersion` casually; it pins state-migration behaviour.
 - Commit only when asked. Never add Claude as a co-author.
