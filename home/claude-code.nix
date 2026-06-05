@@ -31,5 +31,11 @@
 
     # Personal skills -> ~/.claude/skills/<name>/.
     skills.nix-home-manager = ./claude/skills/nix-home-manager;
+
+    # Obsidian skills (vendored from kepano/obsidian-skills, MIT; see
+    # OBSIDIAN-SKILLS-LICENSE.txt). Vault: hivemind. Editing notes + Bases.
+    skills.obsidian-markdown = ./claude/skills/obsidian-markdown;
+    skills.obsidian-bases = ./claude/skills/obsidian-bases;
+    skills.obsidian-cli = ./claude/skills/obsidian-cli;
   };
 }
