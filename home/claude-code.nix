@@ -25,5 +25,8 @@
   programs.claude-code = {
     enable = true;
     package = null;
+
+    # Global user memory -> ~/.claude/CLAUDE.md (read-only Nix symlink).
+    memory.source = ./claude/CLAUDE.md;
   };
 }
