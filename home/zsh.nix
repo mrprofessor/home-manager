@@ -16,6 +16,9 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
 
+    # Fish-style ghost-text suggestions (the one oh-my-zsh plugin worth keeping)
+    autosuggestion.enable = true;
+
     # Cache compinit — only rebuild once a day
     completionInit = ''
       autoload -Uz compinit

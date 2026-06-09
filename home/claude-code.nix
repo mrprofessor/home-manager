@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  # Personal skills, defined once in home/agents/skills.nix.
+  sharedSkills = import ./agents/skills.nix;
+in
 {
   # Config-only management of Claude Code.
   #
@@ -13,29 +17,24 @@
   # hand-managed and writable. Likewise ~/.claude.json is runtime state -- never
   # manage it.
   #
-  # Static, never-mutated-by-CC files are the good fit for Nix. Keep them under
-  # home/claude/ (matching the home/<tool>/ convention used by ghostty, nvim,
-  # tmux, etc.) and reference them by relative path. Add them as the need arises:
+  # Static, never-mutated-by-CC files are the good fit for Nix. All shared
+  # agent source (guidance + skills) lives under home/agents/. Anything
+  # Claude-specific would go in its own dir, e.g.:
   #
-  #   memory.source   = ./claude/CLAUDE.md;          # -> ~/.claude/CLAUDE.md
   #   agents.<name>   = ./claude/agents/<name>.md;    # -> ~/.claude/agents/<name>.md
   #   commands.<name> = ./claude/commands/<name>.md;
   #   hooks.<name>    = ''...'';
-  #   skills.<name>   = ./claude/skills/<name>;
   programs.claude-code = {
     enable = true;
     package = null;
 
     # Global user memory -> ~/.claude/CLAUDE.md (read-only Nix symlink).
-    memory.source = ./claude/CLAUDE.md;
+    # The source is shared with Codex and other agent CLIs via ~/.agents.
+    memory.source = ./agents/AGENTS.md;
 
-    # Personal skills -> ~/.claude/skills/<name>/.
-    skills.nix-home-manager = ./claude/skills/nix-home-manager;
-
-    # Obsidian skills (vendored from kepano/obsidian-skills, MIT; see
-    # OBSIDIAN-SKILLS-LICENSE.txt). Vault: hivemind. Editing notes + Bases.
-    skills.obsidian-markdown = ./claude/skills/obsidian-markdown;
-    skills.obsidian-bases = ./claude/skills/obsidian-bases;
-    skills.obsidian-cli = ./claude/skills/obsidian-cli;
+    # Personal skills -> ~/.claude/skills/<name>/. Sourced from the single
+    # list in home/agents/skills.nix (shared with Codex). Obsidian skills are
+    # vendored from kepano/obsidian-skills (MIT; see OBSIDIAN-SKILLS-LICENSE.txt).
+    skills = sharedSkills;
   };
 }

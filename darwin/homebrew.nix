@@ -23,6 +23,7 @@
       "go"
       "uv"                        # Python package manager
       "nvm"                       # Node Version Manager
+      "hugo"                      # Static blogging tool 
 
       # Shell / CLI utilities
       "jq"

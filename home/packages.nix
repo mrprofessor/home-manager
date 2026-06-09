@@ -11,6 +11,8 @@
     ripgrep
     fzf
     jq
+    hyperfine # statistical shell-startup benchmarking
+    moreutils # `ts` for timestamped `zsh -ixc exit` traces
 
     # Kubernetes (local cluster for the ~/labs/platform lab)
     kind
