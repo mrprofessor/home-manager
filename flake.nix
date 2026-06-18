@@ -10,7 +10,8 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    # Pending upstream PR #151: Homebrew 5.1.15 supports current install-step actions.
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew/pull/151/head";
 
     direnv-instant.url = "github:Mic92/direnv-instant";
     direnv-instant.inputs.nixpkgs.follows = "nixpkgs";

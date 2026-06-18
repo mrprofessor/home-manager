@@ -53,12 +53,12 @@
       # Add .local/bin to PATH
       export PATH="$HOME/.local/bin:$PATH"
 
-      # Lazy-load NVM — only sources nvm.sh on first use
+      # Lazy-load NVM from Homebrew on first use
       export NVM_DIR="$HOME/.nvm"
       _load_nvm() {
         unset -f nvm node npm npx
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+        [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+        [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
       }
       nvm()  { _load_nvm && nvm  "$@"; }
       node() { _load_nvm && node "$@"; }

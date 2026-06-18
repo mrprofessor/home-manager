@@ -1,5 +1,7 @@
 # Global guidance
 
+- AVOID EM-DASHES LIKE PLAGUE.
+
 Edit the source at `~/.config/home-manager/home/agents/AGENTS.md`, then run
 `hms`. The live `~/.agents/AGENTS.md`, `~/.codex/AGENTS.md`, and
 `~/.claude/CLAUDE.md` are read-only Nix symlinks, do not edit them directly.
@@ -19,7 +21,7 @@ Edit the source at `~/.config/home-manager/home/agents/AGENTS.md`, then run
 
 ## Language
 
-- No em-dashes. Ever.
+- AVOID EM-DASHES LIKE PLAGUE.
 
 ## Brevity
 
@@ -34,3 +36,6 @@ Edit the source at `~/.config/home-manager/home/agents/AGENTS.md`, then run
 
 - NEVER add Claude or Codex as a co-author.
 - NEVER add "Generated with Claude Code" (or any Claude/Codex attribution) to GitHub PR descriptions or commit messages.
+
+
+- AVOID EM-DASHES LIKE PLAGUE.

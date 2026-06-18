@@ -12,6 +12,7 @@
     ./neovim.nix
     ./tmux.nix
     ./direnv.nix
+    ./emacs.nix
   ];
 
   # Basic home-manager settings

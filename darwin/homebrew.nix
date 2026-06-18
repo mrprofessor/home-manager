@@ -29,6 +29,7 @@
       "jq"
       "ripgrep"                   # Faster grep
       "tmux"
+      "herdr"                     # Agentic tmux
 
       # Dev / DevOps
       "gh"
@@ -79,7 +80,8 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "uninstall";
+      # Preserve manually installed formulae such as emacs-plus.
+      cleanup = "none";
     };
   };
 }
