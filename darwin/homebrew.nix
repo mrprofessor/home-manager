@@ -59,7 +59,6 @@
       "brave-browser"
 
       # Containers / DevOps
-      "orbstack"                  # Docker alternative
       "podman-desktop"            # Work license issue
       "freelens"                  # K8s IDE
 
