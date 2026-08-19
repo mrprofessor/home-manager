@@ -15,6 +15,7 @@
     taps = [
       "nikitabobko/tap"
       "atlassian/acli"
+      "ariga/homebrew-tap"
     ];
 
     # CLI tools via brew
@@ -28,13 +29,16 @@
       # Shell / CLI utilities
       "jq"
       "ripgrep"                   # Faster grep
-      "tmux"
+      "terminal-notifier"         # Native macOS notifications
       "herdr"                     # Agentic tmux
 
       # Dev / DevOps
-      "gh"
+      "gh"                        # GitHub CLI
+      "jj"                        # Supposedly better git 
       "podman"                    # Docker work stuff
       "atlassian/acli/acli"       # Atlassian client
+      "ariga/tap/atlas"           # Atlas-go
+
 
       # Media / Misc
       "mpv"                       # Emacs multimedia
@@ -64,6 +68,7 @@
 
       # API / Dev tools
       "bruno"                     # Postman alternative
+      "dbeaver-community"         # Postgres GUI
 
       # Productivity / Communication
       "raycast"
