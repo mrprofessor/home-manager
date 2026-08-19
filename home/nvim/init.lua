@@ -75,6 +75,9 @@ require("lazy").setup({
       auto_install = false,
     } },
 
+  -- Amber (.ab) syntax; no treesitter parser exists for it
+  { "amber-lang/amber-vim" },
+
   -- LSP
   { "neovim/nvim-lspconfig",
     config = function()
