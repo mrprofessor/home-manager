@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orca Orchestrator"
+  short_description: "Coordinate persistent agents through Herdr"
+  default_prompt: "Use $orca-skill to delegate and coordinate this task across persistent Herdr agents."

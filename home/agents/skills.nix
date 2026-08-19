@@ -7,6 +7,7 @@
 # Paths resolve relative to this file, i.e. home/agents/skills/<name>.
 {
   nix-home-manager = ./skills/nix-home-manager;
+  orca-skill = ./skills/orca-skill;
   obsidian-markdown = ./skills/obsidian-markdown;
   obsidian-bases = ./skills/obsidian-bases;
   obsidian-cli = ./skills/obsidian-cli;

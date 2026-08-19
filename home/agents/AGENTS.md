@@ -19,6 +19,11 @@ Edit the source at `~/.config/home-manager/home/agents/AGENTS.md`, then run
 - If a project does not have a `.agents` folder, check `.claude` for older Claude-specific skills, commands, agents, hooks, or project guidance before assuming no agent setup exists.
 - Keep tool runtime state in the tool-specific directory: `~/.codex`, `~/.claude`, etc.
 
+## Orchestration
+
+- When `HERDR_ENV=1`, use `orca-skill` by default for non-trivial tasks that benefit from delegation, parallel work, review, or independent validation.
+- Only the top-level agent orchestrates. Orca workers must complete their bounded assignment and must not recursively spawn agents unless explicitly authorized.
+
 ## Language
 
 - AVOID EM-DASHES LIKE PLAGUE.
