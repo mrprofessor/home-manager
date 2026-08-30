@@ -5,7 +5,7 @@ font-size = 18
 window-decoration = true
 macos-titlebar-style = tabs
 window-save-state = always
-theme = dark:Box, light:Apple System Colors Light
+theme = dark:Box, light:Adwaita
 #theme = dark:Box, light:Monokai Pro Light Sun
 
 
@@ -17,5 +17,5 @@ keybind = shift+enter=text:\x0a
 
 confirm-close-surface = false
 
-background-opacity = 0.99
+background-opacity = 0.75
 background-blur-radius = 20
