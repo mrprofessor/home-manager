@@ -13,15 +13,14 @@
     ./tmux.nix
     ./direnv.nix
     ./emacs.nix
+    ./ghostty.nix
+    ./herdr.nix
   ];
 
   # Basic home-manager settings
   home.username = "prof";
   home.homeDirectory = "/Users/prof";
   home.stateVersion = "24.11";
-
-  # Native config files
-  home.file.".config/ghostty/config".source = ./ghostty/config;
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;

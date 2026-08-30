@@ -1,0 +1,14 @@
+onboarding = false
+
+[ui]
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "spaces"
+
+[theme]
+name = "dracula"
+auto_switch = true
+dark_name = "dracula"
+light_name = "catppuccin-latte"
+
+[ui.toast]
+delivery = "system"
