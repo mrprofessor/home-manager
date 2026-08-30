@@ -60,15 +60,10 @@
       "pngpaste"                  # Paste images from clipboard
       "typst"                     # Latex but better
 
-      # Emacs
-      {
-        name = "d12frosted/emacs-plus/emacs-plus@30";
-        args = [
-          "with-native-comp"
-          "with-savchenkovaleriy-big-sur-curvy-3d-icon"
-        ];
-      }
-
+      # Emacs. No args: the formula hardcodes --with-native-compilation=aot,
+      # and the icon is picked in home/emacs-plus/build.yml, which the formula
+      # reads directly. There is no CLI flag for it.
+      "d12frosted/emacs-plus/emacs-plus@30"
     ];
 
     # GUI apps via casks
