@@ -15,7 +15,9 @@ vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.signcolumn = "yes"
 vim.opt.clipboard = "unnamedplus"
-vim.opt.termguicolors = true
+-- No truecolor: nvim emits the 16 ANSI slots so Ghostty's theme (and its
+-- light/dark auto-switch) decides every color. Do not set a colorscheme.
+vim.opt.termguicolors = false
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -30,23 +32,33 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.mouse = "a"
 
+-- Neovim's default scheme defines most groups with guifg only, so with
+-- termguicolors off they fall through to plain foreground. Map the bare ones
+-- onto ANSI *slots*, never hexes, so Ghostty's active theme still picks the
+-- real colors and keeps following its light/dark switch.
+-- Keyword links to Statement, and Number/Boolean link to Constant, so those
+-- inherit. String/Identifier/Function/Diagnostic* already ship a ctermfg.
+for group, hl in pairs({
+  Comment   = { ctermfg = 8 },              -- grey
+  Statement = { ctermfg = 5, bold = true }, -- keep core's bold
+  Type      = { ctermfg = 6 },
+  Constant  = { ctermfg = 3 },
+  PreProc   = { ctermfg = 5 },
+
+  -- Backgrounds. Without these the cmp popup and LSP/telescope floats render
+  -- straight over the buffer text. MatchParen uses reverse so it needs no slot
+  -- and inverts correctly in both light and dark. FloatBorder links to
+  -- NormalFloat, so it follows.
+  MatchParen  = { reverse = true },
+  Pmenu       = { ctermbg = 8 },
+  NormalFloat = { ctermbg = 8 },
+  Folded      = { ctermfg = 8 },
+}) do
+  vim.api.nvim_set_hl(0, group, hl)
+end
+
 require("lazy").setup({
-  -- Colorscheme
-  { "nyoom-engineering/oxocarbon.nvim", priority = 1000,
-    config = function()
-      vim.opt.background = "dark"
-      vim.cmd.colorscheme("oxocarbon")
-      -- Use terminal background instead of theme background
-      vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE" })
-      vim.api.nvim_set_hl(0, "IblScope", { fg = "#525252" })
-    end },
+  -- No colorscheme by design; see termguicolors above.
 
   -- File tree
   { "nvim-neo-tree/neo-tree.nvim", branch = "v3.x",
@@ -64,19 +76,38 @@ require("lazy").setup({
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
     } },
 
-  -- Treesitter (highlight/indent are builtin in nvim 0.11, plugin just manages parsers)
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-    event = "VeryLazy",
-    opts = {
-      ensure_installed = {
-        "lua", "nix", "go", "python", "typescript", "javascript",
-        "json", "yaml", "markdown", "bash", "html", "css", "tsx", "gomod", "gosum",
-      },
-      auto_install = false,
-    } },
+  -- Treesitter (main branch: setup() no longer takes ensure_installed, and
+  -- highlighting must be started per buffer via vim.treesitter.start)
+  -- Pinned: newer commits require nvim 0.12+ (vim.list.unique); drop the
+  -- commit pin once neovim >= 0.12
+  { "nvim-treesitter/nvim-treesitter", branch = "main",
+    commit = "90cd6580e720caedacb91fdd587b747a6e77d61f", build = ":TSUpdate",
+    lazy = false,
+    config = function()
+      local langs = {
+        -- general
+        "lua", "nix", "python", "typescript", "javascript", "tsx",
+        "json", "yaml", "toml", "xml", "markdown", "markdown_inline",
+        "bash", "html", "css", "swift", "haskell", "rust",
+        -- ~/kai (.feature files use builtin cucumber syntax; no gherkin parser)
+        "go", "gomod", "gosum", "gotmpl", "helm", "sql",
+        "c_sharp", "bicep", "terraform", "hcl", "powershell",
+        "dockerfile", "make", "astro", "svelte", "gitignore", "gitattributes",
+      }
+      require("nvim-treesitter").install(langs)
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(ev)
+          -- no parser for this filetype: fall back to legacy syntax quietly
+          pcall(vim.treesitter.start, ev.buf)
+        end,
+      })
+    end },
 
   -- Amber (.ab) syntax; no treesitter parser exists for it
   { "amber-lang/amber-vim" },
+
+  -- Org (~/labs/blog); ships its own treesitter grammar, not in the registry
+  { "nvim-orgmode/orgmode", ft = "org", opts = {} },
 
   -- LSP
   { "neovim/nvim-lspconfig",
@@ -126,6 +157,5 @@ require("lazy").setup({
   { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
   { "numToStr/Comment.nvim", opts = {} },
   { "nvim-lualine/lualine.nvim", opts = { options = { theme = "auto" } } },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   { "folke/which-key.nvim", event = "VeryLazy", opts = {} },
 })

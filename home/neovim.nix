@@ -19,6 +19,8 @@
       ripgrep
       fd
       gcc # needed for treesitter compilation
+      tree-sitter # CLI used by nvim-treesitter main branch to build parsers
+      nodejs # needed by tree-sitter generate for some grammars
     ];
   };
 
