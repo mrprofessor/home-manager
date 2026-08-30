@@ -8,7 +8,7 @@
     enableZshIntegration = false;   # direnv-instant provides its own hook
     nix-direnv.enable = true;
     config = {
-      whitelist.prefix = [ "/Users/prof/Work" ];
+      whitelist.prefix = [ "/Users/prof/kai" ];
     };
   };
 
