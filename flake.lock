@@ -3,16 +3,16 @@
     "brew-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1780483234,
-        "narHash": "sha256-jgt0wi5Jf2QxzLOzB6T95mRyZeWJNAbG2GpLNjvAiwc=",
+        "lastModified": 1786945682,
+        "narHash": "sha256-VBESSoJccikdhxh3vp3SQeG7cZXTOulMvVkoSqNDEhs=",
         "owner": "Homebrew",
         "repo": "brew",
-        "rev": "863696a47f8d9292cb25084b6f8228e003084101",
+        "rev": "5b90e281d4e0c8fbd6ca4d8358276fb305b8d0bd",
         "type": "github"
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "5.1.15",
+        "ref": "6.0.18",
         "repo": "brew",
         "type": "github"
       }
@@ -26,11 +26,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1787209648,
-        "narHash": "sha256-UqF8nrdmeymxWnQ5pTcGUrGOOqIGJjjGILHf9tT6BYI=",
+        "lastModified": 1787814413,
+        "narHash": "sha256-F/C/9fgM9zG2uhZ4e4cbznd7EmFfO7lySQV4trmr9K4=",
         "owner": "Mic92",
         "repo": "direnv-instant",
-        "rev": "c9c7754b9cbc4d2c839d101036f66ca1165b65b8",
+        "rev": "5cef4b3832f28f4f1bd0d2165ec2c0a35961fcd1",
         "type": "github"
       },
       "original": {
@@ -107,16 +107,15 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1781075048,
-        "narHash": "sha256-6L/GYafABbrBPJHT64bZSy5TFY7B9bQMYNnkVe2RMdo=",
+        "lastModified": 1787330919,
+        "narHash": "sha256-LslMncqN7uOOH5S88WZtO/EVt2HwD8ltUnfyANk+mC0=",
         "owner": "zhaofengli",
         "repo": "nix-homebrew",
-        "rev": "1f52c3104e533651c307b86d37462fde953f4a04",
+        "rev": "b00218e4aec0e5bf07d61a0bb13f842faa582d7b",
         "type": "github"
       },
       "original": {
         "owner": "zhaofengli",
-        "ref": "pull/151/head",
         "repo": "nix-homebrew",
         "type": "github"
       }
