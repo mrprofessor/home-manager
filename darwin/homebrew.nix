@@ -38,58 +38,63 @@
     brews = [
       # Languages / runtimes
       "go"
-      "uv"                        # Python package manager
-      "nvm"                       # Node Version Manager
-      "hugo"                      # Static blogging tool 
+      "uv" # Python package manager
+      "nvm" # Node Version Manager
+      "hugo" # Static blogging tool
 
       # Shell / CLI utilities
       "jq"
-      "ripgrep"                   # Faster grep
-      "terminal-notifier"         # Native macOS notifications
-      "herdr"                     # Agentic tmux
+      "ripgrep" # Faster grep
+      "terminal-notifier" # Native macOS notifications
+      "herdr" # Agentic tmux
 
       # Dev / DevOps
-      "gh"                        # GitHub CLI
-      "azure-cli"                 # Talk to azure cloud
-      "atlassian/acli/acli"       # Atlassian client
-      "ariga/tap/atlas"           # Atlas-go
+      "gh" # GitHub CLI
+      "podman" # Docker but nicer
+      "azure-cli" # Talk to azure cloud
+      "atlassian/acli/acli" # Atlassian client
+      "ariga/tap/atlas" # Atlas-go
 
+      # Editors. home/neovim.nix leans on nvim being on PATH.
+      "neovim"
 
       # Media / Misc
-      "mpv"                       # Emacs multimedia
-      "pngpaste"                  # Paste images from clipboard
-      "typst"                     # Latex but better
+      "mpv" # Emacs multimedia
+      "pngpaste" # Paste images from clipboard
+      "typst" # Latex but better
 
       # Emacs. No args: the formula hardcodes --with-native-compilation=aot,
       # and the icon is picked in home/emacs-plus/build.yml, which the formula
       # reads directly. There is no CLI flag for it.
       "d12frosted/emacs-plus/emacs-plus@30"
+
+      # Found installed but undeclared when cleanup was switched on. Declared
+      # so nothing vanished by surprise; delete a line and dws removes it.
+      "glow" # Markdown in the terminal
     ];
 
     # GUI apps via casks
     casks = [
       # Editors / IDEs
-      "zed"                       # Goated text editor fr
-      "visual-studio-code"        # Until Zed support notebooks/pdfs
+      "zed" # Goated text editor fr
 
       # Terminal
-      "ghostty"                   # GPU-accelerated terminal
+      "ghostty" # GPU-accelerated terminal
 
-      # AI / Coding tools
-      "claude-code@latest"        # Claude CLI (fast-updating channel)
-      "codex"                     # OpenAI Codex CLI
-      "steipete/tap/codexbar"     # Usage bar
+      # AI / Coding tools<D-s>
+      "claude-code@latest" # Claude CLI (fast-updating channel)
+      "codex" # OpenAI Codex CLI
+      "steipete/tap/codexbar" # Usage bar
 
       # Browsers
       "brave-browser"
 
       # Containers / DevOps
-      "freelens"                  # K8s IDE
-      "orbstack"                  # I keep coming back to orbs
+      "freelens" # K8s IDE
+      "orbstack" # I keep coming back to orbs
 
       # API / Dev tools
-      "bruno"                     # Postman alternative
-      "dbeaver-community"         # Postgres GUI
+      "bruno" # Postman alternative
 
       # Productivity / Communication
       "raycast"
@@ -105,8 +110,15 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      # Preserve manually installed formulae such as emacs-plus.
+      # Anything brew has that is not declared above gets uninstalled on
+      # dws, taps included. Keep this file the source of truth.
+      #
+      # Not via `cleanup = "uninstall"`: this nix-darwin (25.11) turns that
+      # into `brew bundle --cleanup`, which Homebrew 6 deprecated and now
+      # rejects without `--force-cleanup`. nix-darwin master passes
+      # `--force-cleanup` itself; until that lands here, do it by hand.
       cleanup = "none";
+      extraFlags = [ "--force-cleanup" ];
     };
   };
 }
